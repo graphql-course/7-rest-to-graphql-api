@@ -1,4 +1,5 @@
 import { IResolvers } from "graphql-tools";
+import { makeTraceDetails } from "apollo-engine-reporting/dist/extension";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const resolvers: IResolvers = {
@@ -28,6 +29,16 @@ const resolvers: IResolvers = {
                 (data: any) => data.MRData.DriverTable.Drivers
             );
         },
+        async driversYearRound(_: void, { year, round }, { dataSources } ) {
+            return await dataSources.drivers.getDriversByYearAndRound(year, round).then(
+                (data: any) => data.MRData.DriverTable.Drivers
+            );
+        },
+        async driverSelect(_: void, { id }, { dataSources }) {
+            return await dataSources.drivers.getDriver(id).then(
+                (data: any) => data.MRData.DriverTable.Drivers[0]
+            )
+        }
     }
 };
 

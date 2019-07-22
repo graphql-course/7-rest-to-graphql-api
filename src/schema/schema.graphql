@@ -1,16 +1,29 @@
 type Query {
     "Lista de temporadas de Formula 1 de toda la historia"
     seasonsList: [Season!]!
-    "Lista de carreras programadas de un año concreto. El año seleccionado tiene que ser entre 1950 y el año actual. Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"
+    """Lista de carreras programadas de un año concreto. 
+    El año seleccionado tiene que ser entre 1950 y el año actual. 
+    Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"""
     racesByYear(year: String!): [Race!]!
     raceSelect(year: String!, round: Int!): Race
     allHistoryDrivers(pageElements: Int, page: Int): [Driver!]!
     driversYear(year: String!): [Driver!]!
+    driversYearRound(year: String!, round: Int!): [Driver!]!
+    driverSelect(id: String!): Driver
 }
 
+"""
+Información de la temporada de la Formula.
+Contiene la información del año de esa temporada.
+La url de wikipedia con la información
+La url de Wikipedia con la información adaptada a responsive
+"""
 type Season {
+    "Año de la temporada"
     year: String!
+    "URL de la información"
     url: String!
+    "URL adaptada a dispositivos móviles"
     urlMobile: String!
 }
 
