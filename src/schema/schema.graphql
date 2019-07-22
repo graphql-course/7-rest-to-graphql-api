@@ -3,6 +3,7 @@ type Query {
     seasonsList: [Season!]!
     "Lista de carreras programadas de un año concreto. El año seleccionado tiene que ser entre 1950 y el año actual. Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"
     racesByYear(year: String!): [Race!]!
+    raceSelect(year: String!, round: Int!): Race
 }
 
 type Season {
