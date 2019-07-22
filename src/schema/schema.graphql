@@ -1,5 +1,8 @@
 type Query {
+    "Lista de temporadas de Formula 1 de toda la historia"
     seasonsList: [Season!]!
+    "Lista de carreras programadas de un año concreto. El año seleccionado tiene que ser entre 1950 y el año actual. Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"
+    racesByYear(year: String!): [Race!]!
 }
 
 type Season {
@@ -12,6 +15,7 @@ type Race {
     season: String!
     round: String!
     url: String!
+    urlMobile: String!
     name: String!
     circuit: Circuit!
     date: String!
@@ -21,6 +25,7 @@ type Race {
 type Circuit {
   id: String!
   url: String!
+  urlMobile: String!
   name: String!
   location: Location!
 }
