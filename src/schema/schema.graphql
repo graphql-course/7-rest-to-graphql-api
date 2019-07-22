@@ -4,6 +4,8 @@ type Query {
     "Lista de carreras programadas de un año concreto. El año seleccionado tiene que ser entre 1950 y el año actual. Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"
     racesByYear(year: String!): [Race!]!
     raceSelect(year: String!, round: Int!): Race
+    allHistoryDrivers(pageElements: Int, page: Int): [Driver!]!
+    driversYear(year: String!): [Driver!]!
 }
 
 type Season {
@@ -36,4 +38,15 @@ type Location {
   lng: String!
   locality: String!
   country: String!
+}
+
+type Driver {
+  id: String!
+  url: String!
+  urlMobile: String!
+  name: String!
+  dateOfBirth: String!
+  nationality: String!
+  code: String
+  permanentNumber: String
 }
