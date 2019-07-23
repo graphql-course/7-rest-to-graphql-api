@@ -19,4 +19,10 @@ export function roundCheck(round: number) {
     }
     return round;
 }
+
+export async function paginationFilters (elementsPerPage: number, page: number) {
+    const offset = (page - 1) * elementsPerPage;
+    const limit = elementsPerPage;
+    return `limit=${ limit }&offset=${ offset }`;
+}
  

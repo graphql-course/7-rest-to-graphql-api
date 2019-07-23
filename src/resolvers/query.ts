@@ -19,7 +19,7 @@ const resolvers: IResolvers = {
                 (data: any) => data.MRData.RaceTable.Races[0]
             );
         },
-        async allHistoryDrivers(_: void, { pageElements, page }, { dataSources }) {
+        async historyDrivers(_: void, { pageElements, page }, { dataSources }) {
             return await dataSources.drivers.getDrivers(pageElements, page).then(
                 (data: any) => data.MRData.DriverTable.Drivers
             );
@@ -39,11 +39,16 @@ const resolvers: IResolvers = {
                 (data: any) => data.MRData.DriverTable.Drivers[0]
             )
         },
-        async seasonPilotRanking(_: void, { year }, { dataSources }) {
+        async seasonPilotsRanking(_: void, { year }, { dataSources }) {
             return await dataSources.drivers.getDriversSeasonRanking(year).then(
                 (data: any) => data.MRData.StandingsTable.StandingsLists[0].DriverStandings
             )
-        }
+        },
+        async historyCircuits(_: void, { pageElements, page }, { dataSources }) {
+            return await dataSources.circuits.getCircuits(pageElements, page).then(
+                (data: any) => data.MRData.CircuitTable.Circuits
+            );
+        },
     }
 };
 

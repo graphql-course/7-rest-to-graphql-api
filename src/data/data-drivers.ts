@@ -1,5 +1,5 @@
 import { F1 } from './data-source';
-import { yearCheck, roundCheck } from '../lib/utils';
+import { yearCheck, roundCheck, paginationFilters } from '../lib/utils';
 
 export class DriversData extends F1 {
     constructor() {
@@ -12,13 +12,9 @@ export class DriversData extends F1 {
                 cacheOptions: { ttl: 60 }
             });
         }
-        const offset = (page - 1) * elementsPerPage;
-        const limit = elementsPerPage;
-        const filter = `limit=${ limit }&offset=${ offset }`;
-        return await this.get(`drivers.json?${ filter }`, {
+        return await this.get(`drivers.json?${ paginationFilters(elementsPerPage, page) }`, {
             cacheOptions: { ttl: 60 }
-        });
-        
+        });  
     }
 
     async getDriversByYear(year: string) {
@@ -46,7 +42,6 @@ export class DriversData extends F1 {
 
     async getDriversSeasonRanking(year: string) {
         year = yearCheck(year);
- 
         return await this.get(`${year}/driverStandings.json`, {
             cacheOptions: { ttl: 60 }
         });

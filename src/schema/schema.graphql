@@ -6,11 +6,12 @@ type Query {
     Si no ponemos en ese rango de años lo seleccionado nos seleccionará el año actual"""
     racesByYear(year: String!): [Race!]!
     raceSelect(year: String!, round: Int!): Race
-    allHistoryDrivers(pageElements: Int, page: Int): [Driver!]!
+    historyDrivers(pageElements: Int, page: Int): [Driver!]!
     driversYear(year: String!): [Driver!]!
     driversYearRound(year: String!, round: Int!): [Driver!]!
     driverSelect(id: String!): Driver
-    seasonPilotRanking(year: String!): [DriverStanding!]!
+    seasonPilotsRanking(year: String!): [DriverStanding!]!
+    historyCircuits(pageElements: Int, page: Int): [Circuit!]!
 }
 
 """
@@ -36,7 +37,7 @@ type Race {
     name: String!
     circuit: Circuit!
     date: String!
-    time: String! 
+    time: String
 }
 
 type Circuit {
