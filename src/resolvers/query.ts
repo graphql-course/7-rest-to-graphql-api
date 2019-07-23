@@ -38,6 +38,11 @@ const resolvers: IResolvers = {
             return await dataSources.drivers.getDriver(id).then(
                 (data: any) => data.MRData.DriverTable.Drivers[0]
             )
+        },
+        async seasonPilotRanking(_: void, { year }, { dataSources }) {
+            return await dataSources.drivers.getDriversSeasonRanking(year).then(
+                (data: any) => data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+            )
         }
     }
 };

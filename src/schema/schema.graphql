@@ -10,6 +10,7 @@ type Query {
     driversYear(year: String!): [Driver!]!
     driversYearRound(year: String!, round: Int!): [Driver!]!
     driverSelect(id: String!): Driver
+    seasonPilotRanking(year: String!): [DriverStanding!]!
 }
 
 """
@@ -62,4 +63,20 @@ type Driver {
   nationality: String!
   code: String
   permanentNumber: String
+}
+
+type DriverStanding {
+  position: String!
+  positionText: String!
+  points: String!
+  wins: String!
+  driver: Driver!
+  constructors: [Constructor!]!
+}
+type Constructor {
+  id: String!
+  url: String!
+  urlMobile: String!
+  name: String!
+  nationality: String!
 }
