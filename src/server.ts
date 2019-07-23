@@ -6,7 +6,7 @@ import schema from './schema/schema';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
 import { dataSources } from './data';
-
+import expressPlayground from 'graphql-playground-middleware-express';
 // Inicializamos la aplicación express
 
 const app = express();
@@ -29,9 +29,10 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.use('/', (req: any, res: any) => {
-    res.send('Bienvenido a la API de Saludo!!');
-});
+app.use('/', expressPlayground ({
+    endpoint: '/graphql'
+}
+));
 const PORT = process.env.PORT || 5000;
 
 const httpServer = createServer(app);
