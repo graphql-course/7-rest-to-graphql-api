@@ -66,8 +66,16 @@ type Query {
   añadamos el año correctamente
   """
   seasonPilotsRanking(year: String!): [DriverStanding!]!
+  """
+  Lista de los circuitos de la F1 de toda la historia.
+  Tenemos dos opciones:
+  Obtener todos los circuitos
+  Obtener los circuitos haciendo uso de la paginación y podemos limitar el número de resultados
+  """
+  historyCircuits(pageElements: Int, page: Int): [Circuit!]!,
+  "Circuito seleccionado mediante el id del piloto. Si no encuentra nada, nos devuelve null"
+  circuitSelect(id: String!): Circuit
 }
-
 "Información de la temporada"
 type Season {
   "Año de la temporada"
@@ -84,7 +92,6 @@ type Season {
   """
   urlMobile: String!
 }
-
 "Información de la carrera"
 type Race {
   "Temporada de esa carrera"
@@ -159,7 +166,6 @@ type Location {
   "País de la localización"
   country: String!
 }
-
 "Información del piloto que participa en carreras de F1"
 type Driver {
   """

@@ -16,3 +16,9 @@ export function roundCheck(round: number) {
     }
     return round;
 }
+
+export function paginationOptions(pageElements: number, page: number) {
+    const offset = (page - 1) * pageElements;
+    const limit = pageElements;
+    return `limit=${ limit }&offset=${ offset }`;
+}
