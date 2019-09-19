@@ -1,0 +1,16 @@
+
+"Estadísticas de los pilotos en las carreras / temporadas"
+type DriverStanding {
+  "Posición que ocupa"
+  position: String!
+  "Posición que ocupa"
+  positionText: String!
+  "Puntos acumulados en la carrera / temporada"
+  points: String!
+  "Victorias conseguidas en carreras"
+  wins: String!
+  "Información del piloto"
+  driver: Driver!
+  "Equipo al que pertenece el piloto"
+  teams: [Constructor!]!
+}

@@ -1,6 +1,6 @@
 import { IResolvers } from 'graphql-tools';
 import query from './query';
-import type from './type';
+import type from './types/type';
 const resolversMap: IResolvers = {
     ...query,
     ...type

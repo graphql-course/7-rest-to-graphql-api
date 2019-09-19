@@ -1,0 +1,33 @@
+"""
+Resultado de una carrera
+"""
+type Result {
+  number: String!
+  position: String!
+  positionText: String!
+  points: Int!
+  driver: Driver!
+  team: Constructor!
+  grid: String!
+  laps: String!
+  status: String!
+  time: Time
+  fastestLap: FastestLap
+}
+"Información de la vuelta más rápida de ese piloto"
+type FastestLap {
+  rank: String!
+  lap: String!
+  time: String!
+  averageSpeed: AverageSpeed!
+}
+"Velocidad media en la carrera"
+type AverageSpeed {
+  units: String!
+  speed: String!
+}
+"Tiempo que ha necesitado para completar el piloto esa carrera"
+type Time {
+  millis: String!
+  time: String!
+}
