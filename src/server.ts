@@ -34,7 +34,7 @@ app.use('/', expressPlayground ({
     endpoint: '/graphql'
 }
 ));
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5025;
 
 const httpServer = createServer(app);
 

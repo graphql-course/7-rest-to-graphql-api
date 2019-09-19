@@ -10,7 +10,8 @@ const type: IResolvers = {
     Race: {
         name: parent => parent.raceName,
         circuit: parent => parent.Circuit,
-        urlMobile: parent => getWikipediaMobileUrl(parent.url)
+        urlMobile: parent => getWikipediaMobileUrl(parent.url),
+        results: parent => parent.Results
     }, 
     Circuit: {
         id: parent => parent.circuitId,
@@ -33,6 +34,11 @@ const type: IResolvers = {
     Constructor: {
         id: parent => parent.constructorId,
         urlMobile: parent => getWikipediaMobileUrl(parent.url)
+    },
+    Result: {
+        driver: parent => parent.Driver,
+        points: parent => +parent.points,
+        constructorO: parent => parent.Constructor
     }
 };
 

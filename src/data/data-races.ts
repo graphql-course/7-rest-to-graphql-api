@@ -13,9 +13,14 @@ export class RacesData extends F1 {
         });
     }
 
-    async getYearRound(year: string, round: number) {
+    async getYearRound(year: string, round: number, result: boolean = false) {
         year = checkYear(year);
         round = roundCheck(round);
+        if (result) {
+            return await this.get(`${ year }/${ round }/results.json`, {
+                cacheOptions: { ttl: 60 }
+            });
+        }
         return await this.get(`${ year }/${ round }.json`, {
             cacheOptions: { ttl: 60 }
         });
