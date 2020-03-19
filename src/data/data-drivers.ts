@@ -6,13 +6,24 @@ export class DriversData extends F1 {
         super();
     }
 
-    async getDrivers(pageElements: number = -1, page: number = 1) {
+    async getDriversTotal() {
+        const totalDrivers = await this.get('drivers.json?offset=0&limit=0', {
+            cacheOptions: { ttl: 60 }
+        });
+        return totalDrivers.MRData.total;
+    }
+
+    async getDrivers(pageElements: number = -1, page: number = 1, fromLast: boolean = false) {
         if (pageElements === -1) {
             return await this.get('drivers.json?limit=1000', {
                 cacheOptions: { ttl: 60 }
             });
         }
-        return await this.get(`drivers.json?${ paginationOptions(pageElements, page) }`, {
+        let totalDrivers = 0;
+        if (fromLast) {
+            totalDrivers = await this.getDriversTotal();
+        }
+        return await this.get(`drivers.json?${ paginationOptions(pageElements, page, totalDrivers, fromLast) }`, {
             cacheOptions: { ttl: 60 }
         });
         

@@ -30,7 +30,7 @@ type Query {
   en el año 2019, el año quese asignará será el 2019 en el caso de que no
   añadamos el año correctamente
   """
-  historyDrivers(pageElements: Int, page: Int): [Driver!]!
+  historyDrivers(pageElements: Int, page: Int, order: String = "ASC", fromLast: Boolean = false): [Driver!]!
   """ 
   Obtenemos la información de los pilotos seleccionados por año.
   Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
@@ -57,6 +57,7 @@ type Query {
   Fernando Alonso
   """
   driverSelect(id: String!): Driver
+  driversCount: Int!
   """
   Clasificación final de los pilotos de una temporada.
   Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.

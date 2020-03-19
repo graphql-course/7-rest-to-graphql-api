@@ -18,10 +18,11 @@ const resolvers: IResolvers = {
                 (data: any) => data.MRData.RaceTable.Races[0]
             );
         },
-        async historyDrivers(_: void, { pageElements, page}, { dataSources }) {
-            return await dataSources.drivers.getDrivers(pageElements, page).then(
+        async historyDrivers(_: void, { pageElements, page, order, fromLast }, { dataSources }) {
+            const result = await dataSources.drivers.getDrivers(pageElements, page, fromLast).then(
                 (data: any) => data.MRData.DriverTable.Drivers
             );
+            return (order === 'ASC') ? result : result.reverse();
         },
         async driversYear(_: void, { year }, { dataSources} ) {
             return await dataSources.drivers.getDriversByYear(year).then(
@@ -36,6 +37,11 @@ const resolvers: IResolvers = {
         async driverSelect(_: void, { id}, { dataSources}) {
             return await dataSources.drivers.getDriver(id).then(
                 (data: any) => data.MRData.DriverTable.Drivers[0]
+            )
+        },
+        async driversCount(_: void, {}, { dataSources}) {
+            return await dataSources.drivers.getDriversTotal().then(
+                (data: any) => data
             )
         },
         async seasonPilotsRanking(_: void, { year }, { dataSources}){

@@ -17,8 +17,14 @@ export function roundCheck(round: number) {
     return round;
 }
 
-export function paginationOptions(pageElements: number, page: number) {
-    const offset = (page - 1) * pageElements;
+export function paginationOptions(pageElements: number, page: number, items: number = 0, fromLast: boolean = false) {
+    let offset = 0;
+    if (items === 0) {
+        offset = (page - 1) * pageElements;
+    } else {
+        offset = items - ( pageElements * page );
+    }
+    
     const limit = pageElements;
     return `limit=${ limit }&offset=${ offset }`;
 }
